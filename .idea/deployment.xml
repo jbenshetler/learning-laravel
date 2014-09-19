@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="On explicit save action (Ctrl+S)" serverName="LearningLaravel" uploadOnCheckin="c79d4e45-fb89-4b8c-9614-5e767faa8768" exclude=".svn;.cvs;.idea;.DS_Store;.git;.hg;.idea*" autoUploadExternalChanges="true">
+    <serverData>
+      <paths name="LearningLaravel">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myUploadOnCheckinName" value="LearningLaravel" />
+    <option name="myAutoUpload" value="ON_EXPLICIT_SAVE" />
+  </component>
+</project>
+
