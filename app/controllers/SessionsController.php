@@ -1,13 +1,7 @@
 <?php
 
-class UsersController extends \BaseController {
+class SessionsController extends \BaseController {
 
-    protected $user;
-
-    public function __construct(User $user)
-    {
-        $this->user = $user;
-    }
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -15,8 +9,7 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-        $users = $this->user->all();
-        return View::make('users.index', ['users'=>$users]);
+		//
 	}
 
 
@@ -27,7 +20,8 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('users.create');
+        if (Auth::check()) return Redirect::to('/admin');
+		return View::make('sessions.create');
 	}
 
 
@@ -38,14 +32,11 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-        $input = Input::all();
-        if ( ! $this->user->fill($input)->isValid() )
+		if (Auth::attempt(Input::only('email','password')))
         {
-            return Redirect::back()->withInput()->withErrors($this->user->errors);
+            return Auth::user();
         }
-        $this->user->password = Hash::make($this->user->password);
-        $this->user->save();
-        return Redirect::route('users.index');
+        return Redirect::back()->withInput();
 	}
 
 
@@ -55,10 +46,9 @@ class UsersController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($username)
+	public function show($id)
 	{
-        $user = $this->user->whereUsername($username)->first();
-        return View::make('users.show', ['user'=>$user]);
+		//
 	}
 
 
@@ -89,15 +79,13 @@ class UsersController extends \BaseController {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
-		//
+		Auth::logout();
+        return Redirect::route('sessions.create');
 	}
-
-
 
 
 }

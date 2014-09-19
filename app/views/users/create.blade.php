@@ -5,9 +5,9 @@
     <h1>Create New User</h1>
 {{ Form::open(['route' => 'users.store']) }}
     <div>
-        {{ Form::label('username', 'Username: ') }}
-        {{ Form::text('username') }}
-        {{ $errors->first('username','<span class=error>:message</span>') }}
+        {{ Form::label('email', 'Email: ') }}
+        {{ Form::text('email') }}
+        {{ $errors->first('email','<span class=error>:message</span>') }}
     </div>
     <div>
         {{ Form::label('Password: ') }}
